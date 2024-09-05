@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width"/>
+	<title>Kickstarter Spiel</title>
+	<style>
+		.tooltip {
+			border:2px solid #f7eed7;
+			border-radius:4px;
+			padding:10px;
+			margin-bottom:10px;
+			margin-left:0px;
+			background-color:#f7eed7;
+			font:12px Verdana;
+			line-height:18px;
+			box-shadow: 0px 3px 10px grey;
+		}
+			a {
+				cursor:pointer;
+				color:blue;
+				text-align: center
+			}
+			a:hover {
+				color:black;
+			}
+			label {
+				display:inline-block;
+				width:250px;
+				text-align:right;
+				padding:5px;
+			}
+			a:link {
+				color:blue;
+				text-decoration: underline;
+			}
+	</style>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.imagemapster.min.js"></script>
+	<script type="text/javascript">
+				$(document).ready(function() {
+			$('img').mapster({
+				fillOpacity: 0.5,
+				render_highlight: {
+					fillColor: 'f7eed7',
+					stroke: true,
+					strokeColor: 'f7eed7'
+				},
+								clickNavigate: true,
+								fadeInterval: 50,
+				showToolTip: true,
+				onClick: function (e) {
+					$('#coordinateslabel').hide();
+					$('#deletelabel').show();
+					var thisId = e.key;
+					thisId = thisId.replace('game-', '');
+					$('#existing').val(thisId);
+					console.log($('#existing').val());
+					$('#game').val(thisId);
+					$('#description').val($('#hd'+thisId).val());
+				},
+				toolTipContainer: '<div class="tooltip" style="text-align:left;max-width:200px;"></div>',
+				mapKey: 'data-key',
+				areas: [
+					{key: 'game-138', selected: false, isSelectable: false, isDeselectable: false, toolTip: '<b>Hall 1</b>' }
+					,
+					{key: 'game-189', selected: false, isSelectable: false, isDeselectable: false, toolTip: '<b>Hall 2</b>' }
+					,
+					{key: 'game-9', selected: false, isSelectable: false, isDeselectable: false, toolTip: '<b>Hall 3</b>'}
+					,
+					{key: 'game-182', selected: false, isSelectable: false, isDeselectable: false, toolTip: '<b>Hall 4</b>' }
+					,								
+					{key: 'game-155', selected: false, isSelectable: false, isDeselectable: false, toolTip: '<b>Hall 5</b>'}
+					,
+					{key: 'game-141', selected: false, isSelectable: false, isDeselectable: false, toolTip: '<b>Hall 6</b>'}
+					,
+					]
+			});
+					});
+				var width = 1150;
+		var height = 1800;
+		var multiplier = 2;
+		function smaller(){
+			width = width/2;
+			height = height/2;
+			multiplier = multiplier*2;
+			$('#zoom').val(multiplier);
+			$('#container').animate({
+				width:width
+			}, 500, function() {});
+			$('img').mapster('resize',width,height,500);
+		}
+		function bigger(){
+			width = width*2;
+			height = height*2;
+			multiplier = multiplier/2;
+			$('#zoom').val(multiplier);
+			$('#container').animate({
+				width:width
+			}, 500, function() {});
+			$('img').mapster('resize',width,height,500);
+		}
+		
+			</script>
+</head>
+	<body style="text-align:center;background-color:#eff0f2;font:12px Verdana;">
+					<p style="font-size:20px;"></p>
+			<div id="container" style="width:2956px;margin:15px auto 15px auto;">
+				<img id="picture" src="Front.jpg" id="picture" width="1150" style="border:1px solid blue;" usemap="#map"/>
+				<map name="map" id="map">	
+					<area alt="Hall 1" title="Hall 1" href="https://www.kickstarter.com/" coords="154,920,510,1048" shape="rect">
+					<area alt="Hall 2" title="Hall 2" href="Hall 2" coords="628,918,983,1048" shape="rect">
+  					<area alt="Hall 3" title="Hall 3" href="Hall 3" coords="152,1155,510,1285" shape="rect">
+  					<area alt="Hall 4" title="Hall 4" href="Hall 4" coords="627,1157,983,1286" shape="rect">
+  					<area alt="Hall 5" title="Hall 5" href="Hall 5" coords="154,1390,510,1521" shape="rect">
+  					<area alt="Hall 6" title="Hall 6" href="Hall 6" coords="627,1393,983,1523" shape="rect">
+					
+					
+					<area href="https://www.boardgamegeek.com/boardgameexpansion/147101/tuscany-expand-world-viticulture" target="_BLANK" data-key="game-189" tooltip="" href="#" shape="poly" coords="333,4,333,111,560,113,561,10" />
+					<area href="https://www.boardgamegeek.com/boardgame/119890/agricola-all-creatures-big-and-small" target="_BLANK" data-key="game-9" tooltip="" href="#" shape="poly" coords="563,20,563,70,770,72,770,23" />
+					<area href="https://www.boardgamegeek.com/boardgame/8217/san-juan" target="_BLANK" data-key="game-182" tooltip="" href="#" shape="poly" coords="772,28,961,28,962,71,771,72" />
+					<area href="https://www.boardgamegeek.com/boardgame/198773/codenames-pictures" target="_BLANK" data-key="game-155" tooltip="" href="#" shape="poly" coords="969,18,969,71,1134,71,1131,18" />
+					<area href="https://www.boardgamegeek.com/boardgame/12333/twilight-struggle" target="_BLANK" data-key="game-141" tooltip="" href="#" shape="poly" coords="1170,38,1171,89,1404,90,1404,39" />
+														
+												</map>
+			</div>
+			</p>
+
+</html>
